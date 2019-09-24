@@ -4,18 +4,24 @@ import Inputs from '../components/todos/inputs';
 import List from '../components/todos/list';
 
 class App extends Component {
-  render () {
-    const tasks = [
-      { title: 'Todo１つ目', id: 0 },
-      { title: 'Todo２つ目', id: 1 },
-    ];
+  constructor(props) {
+    super(props);
 
+    // stateの初期値を設定。
+    this.state = {
+      tasks: [
+        { title: 'Todo１つ目', id: 0 },
+      ],
+      uniqueId: 1,
+    };
+  }
+
+  render () {
     return (
       <div>
         <Header></Header>
         <Inputs />
-        <List tasks={tasks}></List>
-        <h1>Hello World!</h1>
+        <List tasks={this.state.tasks}></List>
       </div>
     );
   }
