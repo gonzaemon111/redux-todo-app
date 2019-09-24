@@ -20,6 +20,9 @@ class App extends Component {
     //この１行は、stateを変更するのに必要。
     // なぜこの1行が必要かというと、addTodoメソッドは、src/pages/App.jsで定義しているものの、実際に実行するのは、src/components/todos/inputs.jsxである。
     // この時、thisの内容が変わってしまう。input.jsxでは、stateやtasksもないので、errorになってしまう。そのため、App.jsのstateを変更することを明示するおまじないと思った方が良い。
+
+
+    this.resetTodo = this.resetTodo.bind(this);
   }
 
   addTodo(title) {
@@ -43,12 +46,20 @@ class App extends Component {
     })
   }
 
+  resetTodo() {
+    this.setState({
+      tasks: [],
+      uniqueId: 0,
+    })
+  }
+
   render () {
     return (
       <div>
         <Header></Header>
         <Inputs addTodo={this.addTodo}/>
         <List tasks={this.state.tasks}></List>
+        <button onClick={this.resetTodo}>リセット</button>
       </div>
     );
   }
