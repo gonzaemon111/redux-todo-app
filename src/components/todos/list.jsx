@@ -7,11 +7,11 @@ class List extends Component {
       return <Item {...todo} key={todo.id} />;
     })
     return(
-      <div>
+      <React.Fragment>
         <ul>
           { list }
         </ul>
-      </div>
+      </React.Fragment>
     );
   }
 }
